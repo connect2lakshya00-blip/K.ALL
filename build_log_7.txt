@@ -1,0 +1,32 @@
+
+> senpai@0.1.0 vercel-build
+> prisma generate && next build 
+
+Environment variables loaded from .env
+Prisma schema loaded from prisma\schema.prisma
+
+✔ Generated Prisma Client (v6.19.0) to .\node_modules\@prisma\client in 338ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+
+▲ Next.js 16.2.0 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 64s
+  Running TypeScript ...
+Failed to type check.
+
+./test-gen.ts:61:45
+Type error: 'pe' is of type 'unknown'.
+
+  [90m59 |[0m         console.log([33mJSON[0m.stringify(parsed, [36mnull[0m, [35m2[0m));
+  [90m60 |[0m     } [36mcatch[0m (pe) {
+[31m[1m>[0m [90m61 |[0m         console.error([32m'JSON PARSE FAILED:'[0m, pe.message);
+  [90m   |[0m                                             [31m[1m^[0m
+  [90m62 |[0m     }
+  [90m63 |[0m   } [36mcatch[0m (error: any) {
+  [90m64 |[0m     console.error([32m'FAILED:'[0m);
+Next.js build worker exited with code: 1 and signal: null

@@ -1,0 +1,108 @@
+
+> senpai@0.1.0 vercel-build
+> prisma generate && next build 
+
+Environment variables loaded from .env
+Prisma schema loaded from prisma\schema.prisma
+
+✔ Generated Prisma Client (v6.19.0) to .\node_modules\@prisma\client in 431ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
+
+▲ Next.js 16.2.0 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 4 errors:
+./node_modules/@clerk/nextjs/dist/esm/server/keyless-log-cache.js:2:1
+Module not found: Can't resolve '@clerk/shared/keyless'
+  [90m 1 |[0m [36mimport[0m [32m"../chunk-BUSYA2B4.js"[0m;
+[31m[1m>[0m [90m 2 |[0m [36mimport[0m {
+  [90m   |[0m [31m[1m^^^^^^^[0m
+[31m[1m>[0m [90m 3 |[0m   clerkDevelopmentCache,
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m 4 |[0m   createClerkDevCache,
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m 5 |[0m   createConfirmationMessage,
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m 6 |[0m   createKeylessModeMessage
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m 7 |[0m } [36mfrom[0m [32m"@clerk/shared/keyless"[0m;
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m 8 |[0m [36mexport[0m {
+  [90m 9 |[0m   clerkDevelopmentCache,
+  [90m10 |[0m   createClerkDevCache,
+
+
+
+Import trace:
+  Server Component:
+    ./node_modules/@clerk/nextjs/dist/esm/server/keyless-log-cache.js
+    ./node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./node_modules/@clerk/nextjs/dist/esm/server/keyless-node.js:2:1
+Module not found: Can't resolve '@clerk/shared/keyless'
+  [90m1 |[0m [36mimport[0m [32m"../chunk-BUSYA2B4.js"[0m;
+[31m[1m>[0m [90m2 |[0m [36mimport[0m { createKeylessService, createNodeFileStorage } [36mfrom[0m [32m"@clerk/shared/keyless"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m3 |[0m [36mimport[0m { createClerkClientWithOptions } [36mfrom[0m [32m"./createClerkClient"[0m;
+  [90m4 |[0m [36mimport[0m { nodeCwdOrThrow, nodeFsOrThrow, nodePathOrThrow } [36mfrom[0m [32m"./fs/utils"[0m;
+  [90m5 |[0m [36mfunction[0m createFileStorage() {
+
+
+
+Import trace:
+  Server Component:
+    ./node_modules/@clerk/nextjs/dist/esm/server/keyless-node.js
+    ./node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./app/(main)/courses/[courseId]/preview/_components/course-player-wrapper.tsx
+Module not found: Can't resolve 'styled-jsx/style'
+Import map: aliased to module 'styled-jsx' with subpath '/style' inside of [project]/node_modules/next
+
+
+Import trace:
+  Server Component:
+    ./app/(main)/courses/[courseId]/preview/_components/course-player-wrapper.tsx
+    ./app/(main)/courses/[courseId]/preview/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./node_modules/@clerk/backend/dist/chunk-I4B6KCGC.mjs:2:1
+Export ClerkError doesn't exist in target module
+  [90m1 |[0m [90m// src/errors.ts[0m
+[31m[1m>[0m [90m2 |[0m [36mimport[0m { [33mClerkError[0m } [36mfrom[0m [32m"@clerk/shared/error"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m3 |[0m [36mvar[0m [33mTokenVerificationErrorCode[0m = {
+  [90m4 |[0m   [33mInvalidSecretKey[0m: [32m"clerk_key_invalid"[0m
+  [90m5 |[0m };
+
+The export ClerkError was not found in module [project]/node_modules/@clerk/shared/dist/runtime/error.mjs [app-rsc] (ecmascript).
+Did you mean to import ClerkAPIError?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Server Component:
+    ./node_modules/@clerk/backend/dist/chunk-I4B6KCGC.mjs
+    ./node_modules/@clerk/backend/dist/chunk-GSO4M56Z.mjs
+    ./node_modules/@clerk/nextjs/dist/esm/server/headers-utils.js
+    ./node_modules/@clerk/nextjs/dist/esm/app-router/keyless-actions.js
+
+
+    at ./node_modules/ (clerk/nextjs/dist/esm/server/keyless-log-cache.js:2:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./node_modules/ (clerk/nextjs/dist/esm/server/keyless-node.js:2:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./node_modules/ (clerk/backend/dist/chunk-I4B6KCGC.mjs:2:1)

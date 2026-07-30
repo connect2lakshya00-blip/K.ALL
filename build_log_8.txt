@@ -1,0 +1,102 @@
+
+> senpai@0.1.0 vercel-build
+> prisma generate && next build 
+
+Environment variables loaded from .env
+Prisma schema loaded from prisma\schema.prisma
+
+✔ Generated Prisma Client (v6.19.0) to .\node_modules\@prisma\client in 535ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
+
+▲ Next.js 16.2.0 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 63s
+  Running TypeScript ...
+  Finished TypeScript in 48s ...
+  Collecting page data using 3 workers ...
+  Generating static pages using 3 workers (0/26) ...
+>>> [DEBUG] Entering RootLayout...
+>>> [DEBUG] checkUser (commented) passed.
+>>> [DEBUG] Entering RootLayout...
+>>> [DEBUG] checkUser (commented) passed.
+>>> [DEBUG] Entering RootLayout...
+>>> [DEBUG] checkUser (commented) passed.
+>>> [DEBUG] Entering RootLayout...
+>>> [DEBUG] checkUser (commented) passed.
+>>> [DEBUG] Entering RootLayout...
+>>> [DEBUG] checkUser (commented) passed.
+>>> [DEBUG] Entering RootLayout...
+>>> [DEBUG] checkUser (commented) passed.
+>>> [DEBUG] Entering RootLayout...
+>>> [DEBUG] checkUser (commented) passed.
+>>> [DEBUG] Entering RootLayout...
+>>> [DEBUG] checkUser (commented) passed.
+>>> [DEBUG] Entering RootLayout...
+>>> [DEBUG] checkUser (commented) passed.
+>>> [DEBUG] Entering RootLayout...
+>>> [DEBUG] checkUser (commented) passed.
+>>> [DEBUG] Entering RootLayout...
+>>> [DEBUG] checkUser (commented) passed.
+>>> [DEBUG] Entering RootLayout...
+>>> [DEBUG] checkUser (commented) passed.
+  Generating static pages using 3 workers (6/26) 
+  Generating static pages using 3 workers (12/26) 
+>>> [DEBUG] Entering RootLayout...
+>>> [DEBUG] checkUser (commented) passed.
+  Generating static pages using 3 workers (19/26) 
+>>> [DEBUG] Entering RootLayout...
+>>> [DEBUG] checkUser (commented) passed.
+>>> [DEBUG] Entering RootLayout...
+>>> [DEBUG] checkUser (commented) passed.
+>>> [DEBUG] Entering RootLayout...
+>>> [DEBUG] checkUser (commented) passed.
+>>> [DEBUG] Entering RootLayout...
+>>> [DEBUG] checkUser (commented) passed.
+>>> [DEBUG] Entering RootLayout...
+>>> [DEBUG] checkUser (commented) passed.
+✓ Generating static pages using 3 workers (26/26) in 3.4s
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /ai-cover-letter
+├ ƒ /ai-cover-letter/[id]
+├ ○ /ai-cover-letter/new
+├ ƒ /api/chat
+├ ƒ /api/cron/generate-insights
+├ ƒ /api/cron/keep-alive
+├ ƒ /api/deploy-avatars
+├ ƒ /api/deploy-banner
+├ ƒ /api/generate-video-content
+├ ○ /career-insights
+├ ƒ /courses
+├ ƒ /courses/[courseId]/preview
+├ ○ /dashboard
+├ ○ /icon.svg
+├ ○ /interview
+├ ○ /interview/mock
+├ ƒ /interview/session
+├ ƒ /onboarding
+├ ƒ /prep-quiz
+├ ƒ /prep-quiz/result/[id]
+├ ○ /prep-quiz/start
+├ ○ /resume
+├ ○ /resume/analyzer
+├ ○ /resume/job-matcher
+├ ○ /roadmap
+├ ƒ /sign-in/[[...sign-in]]
+├ ƒ /sign-up/[[...sign-up]]
+└ ○ /tools
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
