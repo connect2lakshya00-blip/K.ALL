@@ -46,7 +46,7 @@ export default function TestimonialSection({ testimonials }: { testimonials: Tes
               Success <span className="text-primary">Stories</span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-              Discover how professionals like you achieved their career goals with K.AII
+              Discover how professionals like you achieved their career goals with CareerMind AI
             </p>
           </div>
           

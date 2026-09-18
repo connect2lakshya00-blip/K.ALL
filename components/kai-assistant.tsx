@@ -106,7 +106,7 @@ export default function KaiAssistant() {
                         <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
                     </span>
                 </div>
-                <span className="font-bold tracking-tight">Ask K.AII</span>
+                <span className="font-bold tracking-tight">Ask CareerMind AI</span>
             </button>
         );
     }
@@ -121,7 +121,7 @@ export default function KaiAssistant() {
                             <Sparkles className="w-5 h-5 text-primary" />
                         </div>
                         <div>
-                            <CardTitle className="text-base font-black text-white leading-none mb-1">K.AII Career Assistant</CardTitle>
+                            <CardTitle className="text-base font-black text-white leading-none mb-1">CareerMind AI Career Assistant</CardTitle>
                             <p className="text-white/40 text-[10px] font-bold uppercase tracking-wider">Your Personal Mentor</p>
                         </div>
                     </div>
@@ -157,7 +157,7 @@ export default function KaiAssistant() {
                             <div className="space-y-4">
                                 <h3 className="text-xl font-bold text-white">How can I help you?</h3>
                                 <p className="text-white/40 text-sm max-w-[240px] leading-relaxed mx-auto">
-                                    I am K.AII, your personalized career mentor. Ask me anything about your career path.
+                                    I am CareerMind AI, your personalized career mentor. Ask me anything about your career path.
                                 </p>
                             </div>
                         </div>
@@ -189,7 +189,7 @@ export default function KaiAssistant() {
                                     <span className="w-2 h-2 rounded-full bg-primary animate-bounce shadow-[0_0_8px_var(--color-primary)]" style={{ animationDelay: '150ms' }} />
                                     <span className="w-2 h-2 rounded-full bg-primary animate-bounce shadow-[0_0_8px_var(--color-primary)]" style={{ animationDelay: '300ms' }} />
                                 </div>
-                                <span className="text-[11px] uppercase font-black tracking-[0.1em] text-primary animate-pulse">K.AII is typing...</span>
+                                <span className="text-[11px] uppercase font-black tracking-[0.1em] text-primary animate-pulse">CareerMind AI is typing...</span>
                             </div>
                         </div>
                     )}

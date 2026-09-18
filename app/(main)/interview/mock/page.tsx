@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
-import VoiceInterviewFlow from '../_components/voice-interview-flow'
+import TextInterviewFlow from '../_components/text-interview-flow'
 
 const MockInterviewPage = () => {
   return (
@@ -13,16 +13,16 @@ const MockInterviewPage = () => {
         <Link href={"/interview"}>
           <Button variant={"link"} className='gap-2 pl-0'>
             <ArrowLeft className='h-4 w-4' />
-            Back to Interview Prepration
+            Back to Interview Preparation
           </Button>
         </Link>
         <div>
-          <h1 className='text-6xl font bold gradient-title'>Voice Mock Interview</h1>
-          <p className='text-muted-foreground'>Test your knowledge with an interactive voice agent.</p>
+          <h1 className='text-6xl font-bold gradient-title'>AI Mock Interview</h1>
+          <p className='text-muted-foreground'>Practice with an interactive AI interviewer powered by advanced AI models.</p>
         </div>
       </div>
 
-      <VoiceInterviewFlow />
+      <TextInterviewFlow />
     </div>
   )
 }

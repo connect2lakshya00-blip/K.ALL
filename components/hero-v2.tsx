@@ -125,7 +125,7 @@ const HeroV2 = () => {
                         <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px] rounded-2xl lg:rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(168,85,247,0.3),0_0_20px_rgba(168,85,247,0.2)] transform-gpu">
                             <Image 
                                 src="/career_new.png" 
-                                alt="K.AII AI Career Platform" 
+                                alt="CareerMind AI Platform" 
                                 fill
                                 sizes="(max-width: 768px) 100vw, 50vw"
                                 className="object-cover transition-transform duration-1000 group-hover:scale-[1.02]"

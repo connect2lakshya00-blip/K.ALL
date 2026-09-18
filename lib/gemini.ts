@@ -4,7 +4,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 // Can be overridden via the GEMINI_MODELS environment variable in .env (comma-separated list).
 export const GEMINI_MODELS = process.env.GEMINI_MODELS
   ? process.env.GEMINI_MODELS.split(",").map(m => m.trim())
-  : ["gemini-2.0-flash", "gemini-2.0-flash-lite"];
+  : ["gemini-1.5-flash", "gemini-1.5-pro"];
 
 // Centralized GoogleGenerativeAI client instance
 export const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");

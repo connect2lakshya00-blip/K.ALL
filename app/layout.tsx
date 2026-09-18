@@ -11,8 +11,8 @@ import { GlobalWidgets } from "@/components/global-widgets";
 export const runtime = "nodejs";
 
 export const metadata: Metadata = {
-  title: "K.AII - Your AI Career Coach",
-  description: "Accelerate your career with K.AII. Get personalized AI-powered guidance, master interviews, build standout resumes, and access industry insights to land your dream job.",
+  title: "CareerMind AI - Your AI Career Coach",
+  description: "Accelerate your career with CareerMind AI. Get personalized AI-powered guidance, master interviews, build standout resumes, and access industry insights to land your dream job.",
 };
 
 const spaceGrotesk = Space_Grotesk({
@@ -59,11 +59,11 @@ export default function RootLayout({
                       <span className="text-white font-black text-lg">K</span>
                     </div>
                     <span className="text-xl font-black text-white tracking-tight">
-                      K.AII
+                      CareerMind AI
                     </span>
                   </div>
                   <p className="text-sm text-muted-foreground/60 font-medium">
-                    © {new Date().getFullYear()} K.AII. All rights reserved.
+                    © {new Date().getFullYear()} CareerMind AI. All rights reserved.
                   </p>
                 </div>
               </div>

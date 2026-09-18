@@ -11,7 +11,7 @@ export async function getCareerInsightsData() {
   const user = await db.user.findUnique({
     where: { clerkUserId: userId },
     include: {
-      industryInsight: true,
+      // industryInsight: true, // Temporarily disabled
       resume: true,
       assessments: {
         orderBy: { createdAt: 'desc' },
@@ -27,7 +27,7 @@ export async function getCareerInsightsData() {
   if (!user) throw new Error("User not found");
 
   // If no industry insight, try to get one
-  let insights = user.industryInsight;
+  let insights = null; // user.industryInsight temporarily disabled
   if (!insights && user.industry) {
     insights = await getIndustryInsights();
   }

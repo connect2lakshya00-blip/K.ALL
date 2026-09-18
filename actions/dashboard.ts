@@ -105,61 +105,37 @@ export async function getIndustryInsights() {
     const user = await db.user.findUnique({
         where: {
             clerkUserId: userId
-        },
-        include: {
-            industryInsight: true // Include the relation
         }
     });
 
     if (!user) throw new Error("User not found");
+    if (!user.industry) throw new Error("User does not have an industry set");
 
-    // If user already has industry insight, check if it needs updating
-    if (user.industryInsight) {
-        const now = new Date();
-        const nextUpdate = new Date(user.industryInsight.nextUpdate);
-        
-        // Regenerate ONLY if nextUpdate date has passed
-        if (now >= nextUpdate) {
-            const insights = await generateAIInsight(user.industry);
-            const updatedInsight = await db.industryInsight.update({
-                where: {
-                    id: user.industryInsight.id
-                },
-                data: {
-                    industry: user.industry!,
-                    ...insights,
-                    lastUpdated: new Date(),
-                    nextUpdate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days later
-                }
-            });
-            return updatedInsight;
-        }
+    // Return mock industry insight data for now (industry relation disabled)
+    const mockInsight = {
+        id: "mock-id",
+        industry: user.industry,
+        salaryRanges: [
+            { role: "Junior Developer", min: 40000, max: 60000, median: 50000 },
+            { role: "Mid-level Developer", min: 60000, max: 90000, median: 75000 },
+            { role: "Senior Developer", min: 90000, max: 130000, median: 110000 }
+        ],
+        growthRate: 15.5,
+        demandLevel: "HIGH" as const,
+        topSkills: ["React", "TypeScript", "Node.js", "Python", "AWS"],
+        marketOutlook: "POSITIVE" as const,
+        keyTrends: [
+            "AI and Machine Learning integration",
+            "Cloud-native development",
+            "Microservices architecture",
+            "DevOps practices"
+        ],
+        recommendedSkills: ["Docker", "Kubernetes", "GraphQL", "Next.js"],
+        lastUpdated: new Date(),
+        nextUpdate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
+    };
 
-        return user.industryInsight;
-    }
-
-    // If no industry insight exists and user has an industry, create one
-    if (user.industry) {
-        const insights = await generateAIInsight(user.industry);
-        const industryInsight = await db.industryInsight.upsert({
-            where: { industry: user.industry },
-            update: {
-                ...insights,
-                lastUpdated: new Date(),
-                nextUpdate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-            },
-            create: {
-                industry: user.industry,
-                ...insights,
-                lastUpdated: new Date(),
-                nextUpdate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days later
-            }
-        });
-
-        return industryInsight;
-    }
-
-    throw new Error("User does not have an industry set");
+    return mockInsight;
 }
 
 export async function getDashboardData() {

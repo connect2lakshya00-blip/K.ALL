@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Loader2, Mic, MicOff, Sparkles } from "lucide-react";
+import { Loader2, Mic, MicOff, Sparkles, Video, VideoOff } from "lucide-react";
 import Vapi from "@vapi-ai/web";
 import { useRouter } from "next/navigation";
 
@@ -14,6 +14,8 @@ interface VoiceInterviewerProps {
 const VoiceInterviewer: React.FC<VoiceInterviewerProps> = ({ targetRole, language }) => {
     const router = useRouter();
     const vapiRef = useRef<Vapi | null>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const streamRef = useRef<MediaStream | null>(null);
 
     useEffect(() => {
         if (!vapiRef.current) {
@@ -24,6 +26,7 @@ const VoiceInterviewer: React.FC<VoiceInterviewerProps> = ({ targetRole, languag
     const [isAgentSpeaking, setIsAgentSpeaking] = useState(false);
     const [activeTranscript, setActiveTranscript] = useState<string>("");
     const [loading, setLoading] = useState(false);
+    const [isVideoEnabled, setIsVideoEnabled] = useState(true);
 
     const [chatHistory, setChatHistory] = useState<{ role: string; text: string }[]>([]);
 
@@ -43,6 +46,55 @@ const VoiceInterviewer: React.FC<VoiceInterviewerProps> = ({ targetRole, languag
             chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
         }
     }, [chatHistory, isAgentSpeaking]);
+
+    // Start video camera
+    const startVideo = async () => {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ 
+                video: { 
+                    width: { ideal: 1280 },
+                    height: { ideal: 720 }
+                }, 
+                audio: false 
+            });
+            streamRef.current = stream;
+            if (videoRef.current) {
+                videoRef.current.srcObject = stream;
+            }
+            setIsVideoEnabled(true);
+        } catch (error) {
+            console.error("Error accessing camera:", error);
+            setIsVideoEnabled(false);
+        }
+    };
+
+    // Stop video camera
+    const stopVideo = () => {
+        if (streamRef.current) {
+            streamRef.current.getTracks().forEach(track => track.stop());
+            streamRef.current = null;
+        }
+        if (videoRef.current) {
+            videoRef.current.srcObject = null;
+        }
+        setIsVideoEnabled(false);
+    };
+
+    // Toggle video
+    const toggleVideo = () => {
+        if (isVideoEnabled) {
+            stopVideo();
+        } else {
+            startVideo();
+        }
+    };
+
+    // Cleanup video on unmount
+    useEffect(() => {
+        return () => {
+            stopVideo();
+        };
+    }, []);
 
 
     useEffect(() => {
@@ -114,14 +166,27 @@ const VoiceInterviewer: React.FC<VoiceInterviewerProps> = ({ targetRole, languag
     const startCall = async () => {
         setLoading(true);
         hasSubmittedRef.current = false; // Reset on new call
+        
+        // Check if VAPI keys are configured
+        if (!process.env.NEXT_PUBLIC_VAPI_PUBLIC_KEY || !process.env.NEXT_PUBLIC_VAPI_ASSISTANT_ID) {
+            alert("Voice AI Assistant is not configured. Please add VAPI keys in .env file.\n\nVAPI_PUBLIC_KEY and VAPI_ASSISTANT_ID are required for voice interviews.");
+            setLoading(false);
+            return;
+        }
+        
         try {
+            // Start video camera
+            await startVideo();
+            
             const { getVapiAssistantOverrides } = await import('@/actions/vapi');
             const overrides = await getVapiAssistantOverrides(targetRole, language);
 
             await vapiRef.current?.start(process.env.NEXT_PUBLIC_VAPI_ASSISTANT_ID || "", overrides.assistantOverrides as any);
             setIsCalling(true);
-        } catch (e) {
+        } catch (e: any) {
             console.error(e);
+            alert(`Failed to start voice interview: ${e.message || 'Unknown error'}\n\nPlease check VAPI configuration.`);
+            stopVideo(); // Stop video if call fails
         } finally {
             setLoading(false);
         }
@@ -129,6 +194,7 @@ const VoiceInterviewer: React.FC<VoiceInterviewerProps> = ({ targetRole, languag
 
     const endCall = () => {
         vapiRef.current?.stop();
+        stopVideo(); // Stop video when call ends
     };
 
     return (
@@ -155,6 +221,38 @@ const VoiceInterviewer: React.FC<VoiceInterviewerProps> = ({ targetRole, languag
 
             {/* The Centerpiece Orb */}
             <div className={`relative flex items-center justify-center transition-all duration-700 w-full z-10 ${isCalling ? 'mt-12 mb-8' : 'my-20'}`}>
+                
+                {/* Video Preview - Shows during interview */}
+                {isCalling && (
+                    <div className="absolute top-4 right-4 z-30">
+                        <div className="relative rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl bg-black">
+                            <video
+                                ref={videoRef}
+                                autoPlay
+                                playsInline
+                                muted
+                                className={`w-48 h-36 object-cover ${!isVideoEnabled && 'hidden'}`}
+                            />
+                            {!isVideoEnabled && (
+                                <div className="w-48 h-36 flex items-center justify-center bg-[#111]">
+                                    <VideoOff className="w-8 h-8 text-muted-foreground" />
+                                </div>
+                            )}
+                            {/* Video Toggle Button */}
+                            <button
+                                onClick={toggleVideo}
+                                className="absolute bottom-2 right-2 p-2 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 hover:bg-black/80 transition-all"
+                            >
+                                {isVideoEnabled ? (
+                                    <Video className="w-4 h-4 text-white" />
+                                ) : (
+                                    <VideoOff className="w-4 h-4 text-white" />
+                                )}
+                            </button>
+                        </div>
+                    </div>
+                )}
+
                 <div className={`relative flex items-center justify-center rounded-full transition-all duration-700 ${isCalling
                     ? 'h-40 w-40 bg-[#111] border border-primary/50 shadow-[0_0_50px_-10px_var(--color-primary)] scale-100 z-10'
                     : 'h-40 w-40 bg-[#111] border border-white/10 scale-95 opacity-80'

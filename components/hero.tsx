@@ -97,7 +97,7 @@ const HeroSection = () => {
                             </motion.h1>
                             
                             <motion.p variants={itemVariants} className='text-base md:text-lg text-gray-400 leading-relaxed max-w-xl'> 
-                                Personalized mentoring, real-time resume analysis, and interview intelligence. K.AII is your ultimate career companion, built on state-of-the-art AI.
+                                Personalized mentoring, real-time resume analysis, and interview intelligence. CareerMind AI is your ultimate career companion, built on state-of-the-art AI.
                             </motion.p>
                         </div>
 

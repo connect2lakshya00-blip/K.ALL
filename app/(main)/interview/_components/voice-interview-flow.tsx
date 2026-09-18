@@ -12,7 +12,7 @@ const VoiceInterviewFlow = ({ children }: { children?: React.ReactNode }) => {
     const language = "English";
 
     const handleStart = () => {
-        router.push(`/interview/session?role=${encodeURIComponent(targetRole)}&language=${encodeURIComponent(language)}`);
+        router.push(`/interview/mock`); // Changed to text-based interview
     }
 
     return (
