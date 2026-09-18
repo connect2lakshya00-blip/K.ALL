@@ -72,7 +72,7 @@ Guidelines:
         const model = genAI.getGenerativeModel({ model: modelName });
         result = await model.generateContentStream({
           contents,
-        }, { apiVersion: "v1beta" });
+        });
         if (result) break;
       } catch (err: any) {
         console.error(`Chat error with model ${modelName}:`, err.message);
