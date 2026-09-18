@@ -18,6 +18,7 @@ export async function POST(request: Request) {
             data: {
                 user: { connect: { clerkUserId: userId } },
                 targetRole,
+                language: 'en', // Default language
                 transcript,
                 chatHistory: messages,
                 status: 'COMPLETED',
