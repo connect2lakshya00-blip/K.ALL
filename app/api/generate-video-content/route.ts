@@ -58,7 +58,9 @@ function saveLocalAudio(fileName: string, buffer: ArrayBuffer): string {
     fs.writeFileSync(filePath, Buffer.from(buffer));
     return `/course-assets/${fileName}`;
 }
-const deepgram = createDeepgramClient(process.env.DEEPGRAM_API_KEY || '');
+const deepgram = process.env.DEEPGRAM_API_KEY 
+    ? createDeepgramClient(process.env.DEEPGRAM_API_KEY) 
+    : null;
 
 export const maxDuration = 120;
 
@@ -153,6 +155,10 @@ Example format:
 
                 // TTS with retry
                 let audioBuffer: ArrayBuffer | null = null;
+                if (!process.env.DEEPGRAM_API_KEY) {
+                    throw new Error('Deepgram API key is required for course generation. Please add DEEPGRAM_API_KEY to environment variables.');
+                }
+                
                 for (let attempt = 0; attempt < 2; attempt++) {
                     try {
                         const ttsRes = await fetchWithTimeout(
@@ -201,19 +207,21 @@ Example format:
 
                 // Captions with Deepgram (using buffer transcription directly)
                 let words: any[] = [];
-                for (let capAttempt = 0; capAttempt < 2; capAttempt++) {
-                    try {
-                        await new Promise(r => setTimeout(r, 1000)); // Rate limit safety
-                        const { result, error } = await deepgram.listen.prerecorded.transcribeFile(
-                            Buffer.from(audioBuffer),
-                            { model: 'nova-2', smart_format: true, words: true }
-                        );
-                        if (!error) {
-                            words = result?.results?.channels[0]?.alternatives[0]?.words || [];
-                            if (words.length > 0) break;
+                if (deepgram) {
+                    for (let capAttempt = 0; capAttempt < 2; capAttempt++) {
+                        try {
+                            await new Promise(r => setTimeout(r, 1000)); // Rate limit safety
+                            const { result, error } = await deepgram.listen.prerecorded.transcribeFile(
+                                Buffer.from(audioBuffer),
+                                { model: 'nova-2', smart_format: true, words: true }
+                            );
+                            if (!error) {
+                                words = result?.results?.channels[0]?.alternatives[0]?.words || [];
+                                if (words.length > 0) break;
+                            }
+                        } catch (e: any) {
+                            console.warn(`Caption attempt ${capAttempt + 1} failed for slide ${slideIndex}:`, e?.message);
                         }
-                    } catch (e: any) {
-                        console.warn(`Caption attempt ${capAttempt + 1} failed for slide ${slideIndex}:`, e?.message);
                     }
                 }
 
