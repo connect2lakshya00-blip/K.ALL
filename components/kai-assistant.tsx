@@ -97,32 +97,33 @@ export default function KaiAssistant() {
         return (
             <button
                 onClick={() => setIsOpen(true)}
-                className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-6 py-4 rounded-full shadow-[0_10px_40px_-10px_var(--color-primary)] transition-all duration-300 hover:scale-105 group"
+                className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 flex items-center gap-2 sm:gap-2 bg-primary hover:bg-primary/90 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full shadow-[0_10px_40px_-10px_var(--color-primary)] transition-all duration-300 hover:scale-105 group"
             >
                 <div className="relative">
-                    <MessageSquare className="w-6 h-6" />
-                    <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                    <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6" />
+                    <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5 sm:h-3 sm:w-3">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 sm:h-3 sm:w-3 bg-white"></span>
                     </span>
                 </div>
-                <span className="font-bold tracking-tight">Ask CareerMind AI</span>
+                <span className="font-bold tracking-tight text-sm sm:text-base hidden sm:inline">Ask CareerMind AI</span>
+                <span className="font-bold tracking-tight text-sm sm:hidden">Ask AI</span>
             </button>
         );
     }
 
     return (
-        <div className="fixed bottom-6 right-6 z-50 w-[95vw] md:w-[500px] h-[750px] max-h-[85vh] flex flex-col transition-all duration-500 animate-in slide-in-from-bottom-10 fade-in">
-            <Card className="flex-1 flex flex-col bg-[#090812]/98 backdrop-blur-3xl border-white/10 shadow-[0_30px_90px_-20px_rgba(0,0,0,0.9)] overflow-hidden rounded-[2.5rem]">
+        <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[95vw] md:w-[500px] h-[calc(100vh-8rem)] sm:h-[750px] max-h-[85vh] flex flex-col transition-all duration-500 animate-in slide-in-from-bottom-10 fade-in">
+            <Card className="flex-1 flex flex-col bg-[#090812]/98 backdrop-blur-3xl border-white/10 shadow-[0_30px_90px_-20px_rgba(0,0,0,0.9)] overflow-hidden rounded-3xl sm:rounded-[2.5rem]">
                 {/* Header */}
-                <CardHeader className="p-5 bg-gradient-to-br from-primary/15 via-transparent to-transparent border-b border-white/5 flex flex-row items-center justify-between shrink-0">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center border border-primary/30 shadow-[0_0_20px_-5px_var(--color-primary)]">
-                            <Sparkles className="w-5 h-5 text-primary" />
+                <CardHeader className="p-4 sm:p-5 bg-gradient-to-br from-primary/15 via-transparent to-transparent border-b border-white/5 flex flex-row items-center justify-between shrink-0">
+                    <div className="flex items-center gap-2 sm:gap-3">
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-primary/20 flex items-center justify-center border border-primary/30 shadow-[0_0_20px_-5px_var(--color-primary)]">
+                            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                         </div>
                         <div>
-                            <CardTitle className="text-base font-black text-white leading-none mb-1">CareerMind AI Career Assistant</CardTitle>
-                            <p className="text-white/40 text-[10px] font-bold uppercase tracking-wider">Your Personal Mentor</p>
+                            <CardTitle className="text-sm sm:text-base font-black text-white leading-none mb-1">CareerMind AI</CardTitle>
+                            <p className="text-white/40 text-[9px] sm:text-[10px] font-bold uppercase tracking-wider">Your Personal Mentor</p>
                         </div>
                     </div>
                     <div className="flex items-center gap-1">
@@ -131,32 +132,32 @@ export default function KaiAssistant() {
                             size="icon" 
                             onClick={handleClearChat}
                             disabled={messages.length === 0}
-                            className="rounded-xl hover:bg-white/5 text-white/40 hover:text-red-400 transition-colors"
+                            className="rounded-lg sm:rounded-xl hover:bg-white/5 text-white/40 hover:text-red-400 transition-colors w-8 h-8 sm:w-10 sm:h-10"
                             title="Clear Chat"
                         >
-                            <Trash2 className="w-4 h-4" />
+                            <Trash2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                         </Button>
                         <Button 
                             variant="ghost" 
                             size="icon" 
                             onClick={() => setIsOpen(false)}
-                            className="rounded-xl hover:bg-white/5 text-white/40 hover:text-white"
+                            className="rounded-lg sm:rounded-xl hover:bg-white/5 text-white/40 hover:text-white w-8 h-8 sm:w-10 sm:h-10"
                         >
-                            <X className="w-5 h-5" />
+                            <X className="w-4 h-4 sm:w-5 sm:h-5" />
                         </Button>
                     </div>
                 </CardHeader>
 
                 {/* Body */}
-                <CardContent className="flex-1 overflow-y-auto p-6 space-y-8 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+                <CardContent className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6 sm:space-y-8 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
                     {messages.length === 0 && (
-                        <div className="h-full flex flex-col items-center justify-center text-center space-y-8 py-10">
-                            <div className="w-20 h-20 rounded-[2.5rem] bg-white/5 border border-white/10 flex items-center justify-center mb-4">
-                                <Sparkles className="w-10 h-10 text-white/20" />
+                        <div className="h-full flex flex-col items-center justify-center text-center space-y-6 sm:space-y-8 py-8 sm:py-10">
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-[2.5rem] bg-white/5 border border-white/10 flex items-center justify-center mb-2 sm:mb-4">
+                                <Sparkles className="w-8 h-8 sm:w-10 sm:h-10 text-white/20" />
                             </div>
-                            <div className="space-y-4">
-                                <h3 className="text-xl font-bold text-white">How can I help you?</h3>
-                                <p className="text-white/40 text-sm max-w-[240px] leading-relaxed mx-auto">
+                            <div className="space-y-3 sm:space-y-4">
+                                <h3 className="text-lg sm:text-xl font-bold text-white">How can I help you?</h3>
+                                <p className="text-white/40 text-xs sm:text-sm max-w-[220px] sm:max-w-[240px] leading-relaxed mx-auto">
                                     I am CareerMind AI, your personalized career mentor. Ask me anything about your career path.
                                 </p>
                             </div>
@@ -168,13 +169,13 @@ export default function KaiAssistant() {
                             key={idx} 
                             className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'} animate-in fade-in slide-in-from-bottom-2 duration-300`}
                         >
-                            <div className={`max-w-[90%] p-6 rounded-3xl ${
+                            <div className={`max-w-[85%] sm:max-w-[90%] p-4 sm:p-6 rounded-2xl sm:rounded-3xl ${
                                 msg.role === 'user' 
                                 ? 'bg-primary text-white font-bold rounded-tr-sm shadow-[0_10px_25px_-5px_rgba(168,85,247,0.4)]' 
                                 : 'bg-white/5 border border-white/10 text-zinc-100 font-medium rounded-tl-sm'
                             }`}>
                                 <div 
-                                    className="text-[16px] leading-[1.6] tracking-tight chatbot-content"
+                                    className="text-[14px] sm:text-[16px] leading-[1.6] tracking-tight chatbot-content"
                                     dangerouslySetInnerHTML={{ __html: marked.parse(msg.content) as string }}
                                 />
                             </div>
@@ -197,35 +198,35 @@ export default function KaiAssistant() {
                 </CardContent>
 
                 {/* Input */}
-                <div className="p-6 border-t border-white/5 bg-black/40 backdrop-blur-xl shrink-0">
+                <div className="p-4 sm:p-6 border-t border-white/5 bg-black/40 backdrop-blur-xl shrink-0">
                     <form 
                         onSubmit={(e) => {
                             e.preventDefault();
                             handleSend(input);
                         }}
-                        className="relative flex items-center gap-3"
+                        className="relative flex items-center gap-2 sm:gap-3"
                     >
                         <Input 
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
-                            placeholder="Ask anything about your career..."
+                            placeholder="Ask about your career..."
                             disabled={isLoading}
-                            className="flex-1 bg-white/5 border-white/10 rounded-2xl h-14 pl-5 pr-14 text-sm focus-visible:ring-primary/40"
+                            className="flex-1 bg-white/5 border-white/10 rounded-xl sm:rounded-2xl h-12 sm:h-14 pl-4 sm:pl-5 pr-12 sm:pr-14 text-xs sm:text-sm focus-visible:ring-primary/40"
                         />
                         <Button 
                             type="submit"
                             disabled={!input.trim() || isLoading}
                             size="icon"
-                            className="absolute right-2 h-10 w-10 rounded-xl transition-all"
+                            className="absolute right-1.5 sm:right-2 h-9 w-9 sm:h-10 sm:w-10 rounded-lg sm:rounded-xl transition-all"
                         >
                             {isLoading ? (
-                                <Loader2 className="w-5 h-5 animate-spin" />
+                                <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" />
                             ) : (
-                                <Send className="w-5 h-5" />
+                                <Send className="w-4 h-4 sm:w-5 sm:h-5" />
                             )}
                         </Button>
                     </form>
-                    <p className="text-[10px] text-center text-white/20 mt-4 font-medium uppercase tracking-[0.2em]">
+                    <p className="text-[9px] sm:text-[10px] text-center text-white/20 mt-3 sm:mt-4 font-medium uppercase tracking-[0.2em]">
                         AI guidance can be inaccurate. Cross-verify important steps.
                     </p>
                 </div>

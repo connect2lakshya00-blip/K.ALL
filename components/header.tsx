@@ -12,13 +12,13 @@ const Header = () => {
 
   return (
     <header className='fixed top-0 w-full border-b border-white/5 bg-black/40 backdrop-blur-xl z-50 shadow-[0_4px_30px_rgba(0,0,0,0.1)]'>
-      <nav className='container mx-auto px-4 h-16 flex items-center justify-between'>
-        <Link href="/" className='flex items-center gap-3 group'>
-          <div className="relative w-10 h-10 flex items-center justify-center">
+      <nav className='container mx-auto px-4 sm:px-6 h-16 sm:h-16 flex items-center justify-between'>
+        <Link href="/" className='flex items-center gap-2 sm:gap-3 group'>
+          <div className="relative w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center">
             <div className="absolute inset-0 bg-primary/10 blur-xl group-hover:bg-primary/30 transition-all rounded-full" />
             <svg 
               viewBox="0 0 100 100" 
-              className="w-10 h-10 relative z-10 drop-shadow-[0_0_8px_rgba(var(--primary),0.5)]"
+              className="w-8 h-8 sm:w-10 sm:h-10 relative z-10 drop-shadow-[0_0_8px_rgba(var(--primary),0.5)]"
               xmlns="http://www.w3.org/2000/svg"
             >
               <defs>
@@ -39,24 +39,24 @@ const Header = () => {
             </svg>
           </div>
           <div className='flex flex-col'>
-            <span className='text-2xl font-black tracking-tighter text-white group-hover:text-primary transition-all leading-none'>
+            <span className='text-lg sm:text-2xl font-black tracking-tighter text-white group-hover:text-primary transition-all leading-none'>
               CareerMind<span className="text-primary"> AI</span>
             </span>
-            <span className='text-[8px] font-bold tracking-[0.2em] text-muted-foreground uppercase mt-1'>
+            <span className='text-[7px] sm:text-[8px] font-bold tracking-[0.2em] text-muted-foreground uppercase mt-0.5 sm:mt-1 hidden sm:block'>
               Your AI Career Mentor
             </span>
           </div>
         </Link>
-        <div className='flex items-center gap-2'>
+        <div className='flex items-center gap-1 sm:gap-2'>
           {isLoaded && userId && (
-            <div className="flex items-center gap-6 mr-6">
-              <Link href="/dashboard" className="text-sm font-bold text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
-                <LayoutDashboard className='h-4 w-4' />
-                <span>Dashboard</span>
+            <div className="hidden md:flex items-center gap-4 lg:gap-6 mr-4 lg:mr-6">
+              <Link href="/dashboard" className="text-xs lg:text-sm font-bold text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
+                <LayoutDashboard className='h-3.5 w-3.5 lg:h-4 lg:w-4' />
+                <span className="hidden lg:inline">Dashboard</span>
               </Link>
-              <Link href="/tools" className="text-sm font-bold text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
-                <Briefcase className='h-4 w-4' />
-                <span>Tools</span>
+              <Link href="/tools" className="text-xs lg:text-sm font-bold text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
+                <Briefcase className='h-3.5 w-3.5 lg:h-4 lg:w-4' />
+                <span className="hidden lg:inline">Tools</span>
               </Link>
             </div>
           )}
@@ -64,11 +64,12 @@ const Header = () => {
           {isLoaded && !userId && (
             <>
               <SignInButton mode="modal">
-                <Button variant={"ghost"} size="sm">Sign In</Button>
+                <Button variant={"ghost"} size="sm" className="text-xs sm:text-sm px-3 sm:px-4">Sign In</Button>
               </SignInButton>
               <Link href="/sign-up">
-                <Button size="sm">
-                  Get Started
+                <Button size="sm" className="text-xs sm:text-sm px-3 sm:px-4">
+                  <span className="hidden sm:inline">Get Started</span>
+                  <span className="sm:hidden">Start</span>
                 </Button>
               </Link>
             </>
