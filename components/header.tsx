@@ -14,7 +14,7 @@ const Header = () => {
     <header className='fixed top-0 w-full border-b border-white/5 bg-black/40 backdrop-blur-xl z-50 shadow-[0_4px_30px_rgba(0,0,0,0.1)]'>
       <nav className='container mx-auto px-4 sm:px-6 h-16 sm:h-16 flex items-center justify-between'>
         <Link href="/" className='flex items-center gap-2 sm:gap-3 group'>
-          <div className="relative w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center">
+          <div className="relative w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center shrink-0">
             <div className="absolute inset-0 bg-primary/10 blur-xl group-hover:bg-primary/30 transition-all rounded-full" />
             <svg 
               viewBox="0 0 100 100" 
@@ -38,11 +38,11 @@ const Header = () => {
               <circle cx="30" cy="50" r="5" fill="#10b981" className="animate-pulse" />
             </svg>
           </div>
-          <div className='flex flex-col'>
-            <span className='text-lg sm:text-2xl font-black tracking-tighter text-white group-hover:text-primary transition-all leading-none'>
+          <div className='flex flex-col min-w-0'>
+            <span className='text-lg sm:text-2xl font-black tracking-tighter text-white group-hover:text-primary transition-all leading-none whitespace-nowrap'>
               CareerMind<span className="text-primary"> AI</span>
             </span>
-            <span className='text-[7px] sm:text-[8px] font-bold tracking-[0.2em] text-muted-foreground uppercase mt-0.5 sm:mt-1 hidden sm:block'>
+            <span className='text-[7px] sm:text-[8px] font-bold tracking-[0.2em] text-muted-foreground uppercase mt-0.5 sm:mt-1 hidden sm:block whitespace-nowrap'>
               Your AI Career Mentor
             </span>
           </div>
