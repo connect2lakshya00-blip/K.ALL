@@ -14,30 +14,6 @@ const Header = () => {
     <header className='fixed top-0 w-full border-b border-white/5 bg-black/40 backdrop-blur-xl z-50 shadow-[0_4px_30px_rgba(0,0,0,0.1)]'>
       <nav className='container mx-auto px-4 sm:px-6 h-16 sm:h-16 flex items-center justify-between'>
         <Link href="/" className='flex items-center gap-2 sm:gap-3 group'>
-          <div className="relative w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center shrink-0">
-            <div className="absolute inset-0 bg-primary/10 blur-xl group-hover:bg-primary/30 transition-all rounded-full" />
-            <svg 
-              viewBox="0 0 100 100" 
-              className="w-8 h-8 sm:w-10 sm:h-10 relative z-10 drop-shadow-[0_0_8px_rgba(var(--primary),0.5)]"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="var(--color-primary)" />
-                  <stop offset="100%" stopColor="var(--color-secondary)" />
-                </linearGradient>
-              </defs>
-              <path 
-                d="M30 20 L30 80 M30 50 L70 20 M30 50 L70 80" 
-                fill="none" 
-                stroke="url(#logoGradient)" 
-                strokeWidth="12" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              />
-              <circle cx="30" cy="50" r="5" fill="#10b981" className="animate-pulse" />
-            </svg>
-          </div>
           <div className='flex flex-col min-w-0'>
             <span className='text-lg sm:text-2xl font-black tracking-tighter text-white group-hover:text-primary transition-all leading-none whitespace-nowrap'>
               CareerMind<span className="text-primary"> AI</span>
